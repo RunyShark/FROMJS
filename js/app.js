@@ -11,6 +11,7 @@ function eventListeners() {
   email.addEventListener("blur", validateFrom);
   asunto.addEventListener("blur", validateFrom);
   mensaje.addEventListener("blur", validateFrom);
+  form.addEventListener("submit", sendEmail);
 }
 
 function startApp() {
@@ -76,4 +77,17 @@ function showError(message) {
   if (errors.length === 0) {
     form.appendChild(messageError);
   }
+}
+function sendEmail(e) {
+  e.preventDefault();
+  //
+  const spinner = document.querySelector("#spinner");
+  spinner.style.display = "flex";
+
+  setTimeout(() => {
+    spinner.style.display = "none";
+    const parrafo = document.createElement("p");
+    parrafo.textContent = "Se envio correctamente";
+    form.insertBefore(parrafo, spinner);
+  }, 3000);
 }
